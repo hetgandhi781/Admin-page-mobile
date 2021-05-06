@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function Form() {
   const classes = useStyles();
   const [details, setDetails] = useState({
     mobile_name: "",
@@ -77,7 +77,7 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4">
           Add Mobile Details
         </Typography>
         <form

@@ -66,7 +66,7 @@ export default function Pricing() {
   const [data, setData] = useState({});
   const [mainData, setMainData] = useState({});
   const [brand, setBrand] = useState([]);
-  const [filterBrand, setFilterBrand] = useState();
+  const [filterBrand, setFilterBrandf] = useState();
   const [dataBrand, setDataBrand] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
 
@@ -92,23 +92,19 @@ export default function Pricing() {
 
   const handleBrand = (e) => {
     var c = e.target.value;
-    console.log(c);
-    setFilterBrand(c);
     var g = [];
     if (c === "All") {
       g = mainData;
       setDataBrand(mainData);
     } else {
-      var g = mainData.filter((item) => item.brand === c);
+      g = mainData.filter((item) => item.brand === c);
       setDataBrand(g);
     }
     const filteredArray = g.filter((value) => dataFilter.includes(value));
-    console.log(filteredArray);
     setData(filteredArray);
   };
 
   const handleFilter = (e) => {
-    console.log(e.target.value);
     var lower = e.target.value.split("-")[0];
     var higher = e.target.value.split("-")[1];
     console.log(lower, higher);
@@ -116,7 +112,6 @@ export default function Pricing() {
     if (lower === "20000 and more") {
       g = mainData.filter((item) => Number(item.price) >= 20000);
       setDataFilter(g);
-      console.log(g);
     } else if (lower === "All") {
       g = mainData;
       setDataFilter(mainData);
@@ -126,7 +121,7 @@ export default function Pricing() {
           Number(item.price) >= Number(lower) &&
           Number(item.price) <= Number(higher)
       );
-      setFilterBrand(g);
+      setDataFilter(g);
     }
     const filteredArray = g.filter((value) => dataBrand.includes(value));
     setData(filteredArray);
@@ -136,7 +131,12 @@ export default function Pricing() {
     <React.Fragment>
       <CssBaseline />
 
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+      <Container
+        maxWidth="sm"
+        component="main"
+        className={classes.heroContent}
+        style={{ padding: 10 }}
+      >
         <Typography
           component="h1"
           variant="h2"
